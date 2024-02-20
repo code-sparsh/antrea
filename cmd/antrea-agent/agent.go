@@ -53,6 +53,7 @@ import (
 	"antrea.io/antrea/pkg/agent/memberlist"
 	"antrea.io/antrea/pkg/agent/metrics"
 	"antrea.io/antrea/pkg/agent/multicast"
+	"antrea.io/antrea/pkg/util/env"
 	mcroute "antrea.io/antrea/pkg/agent/multicluster"
 	"antrea.io/antrea/pkg/agent/nodeip"
 	npl "antrea.io/antrea/pkg/agent/nodeportlocal"
@@ -102,6 +103,7 @@ var ipv4Localhost = net.ParseIP("127.0.0.1")
 // run starts Antrea agent with the given options and waits for termination signal.
 func run(o *Options) error {
 	klog.InfoS("Starting Antrea agent", "version", version.GetFullVersion())
+	klog.InfoS("Test Log by @code-sparsh", "pod-name", env.GetPodName())
 
 	// Create K8s Clientset, CRD Clientset, Multicluster CRD Clientset and SharedInformerFactory for the given config.
 	k8sClient, _, crdClient, _, mcClient, _, err := k8s.CreateClients(o.config.ClientConnection, o.config.KubeAPIServerOverride)
